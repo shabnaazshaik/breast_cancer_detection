@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Image Classification</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 50px;
+            color: black;
+            text-align: center;
+            background: #65e169;
+            height: 1.5em;
+            font-style: italic;
+        }
+
+        button {
+            background-color: #030303;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 4px 2px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px 0 rgba(15, 43, 125, 0.515), 0 6px 20px 0 rgba(189, 111, 48, 0.2);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 15px 32px;
+            cursor: pointer;
+            background-color: #030303;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            box-shadow: 0 6px 20px 0 rgba(15, 43, 125, 0.515), 0 6px 20px 0 rgba(189, 111, 48, 0.2);
+        }
+
+        .prediction-container {
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 300px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Breast Cancer Image Classification</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label for="file" class="custom-file-upload">
+            Choose an image
+        </label>
+        <input type="file" name="file" id="file" accept="image/*">
+        <input type="submit" value="Upload Image" class="custom-file-upload">
+    </form>
+
+    {% if prediction %}
+    <div class="prediction-container">
+        <h2>Prediction:</h2>
+        <p>The uploaded image is <strong>{{ prediction }}</strong></p>
+        <img src="{{ file_path }}" alt="Uploaded Image" style="max-width: 400px;">
+    </div>
+    {% endif %}
+
+    {% if prediction %}
+    <h1>Result</h1>
+    <p>Uploaded Image:</p>
+    <img src="{{ url_for('static', filename=filename) }}" alt="Uploaded Image">
+    <p>Prediction: {{ prediction }}</p>
+    {% endif %}
+
+</body>
+</html>
